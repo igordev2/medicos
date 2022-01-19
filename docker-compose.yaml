@@ -9,8 +9,8 @@ services:
     volumes:
       - ./data/:/var/lib/mysql
     environment:
-      - MYSQL_DATABASE=medicos
-      - MYSQL_ROOT_PASSWORD=medicos
+      - MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
     networks:
       - medicos-network
   
@@ -28,7 +28,8 @@ services:
       - mysql
     command: >
       sh -c "npm install &&
-            npm run start:dev"
+             rm -rf dist &&
+             npm run start:dev"
 
   nginx:
     build:
