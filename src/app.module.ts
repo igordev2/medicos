@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { DoctorsModule } from './doctors/doctors.module';
 
 @Module({
   imports: [
@@ -12,9 +13,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       username: process.env.MYSQL_USERNAME,
       password: process.env.MYSQL_PASSWORD,
       database: process.env.MYSQL_DATABASE,
-      entities: [],
+      entities: [__dirname + '/**/*.entity{.js,.ts}'],
       synchronize: true,
     }),
+    DoctorsModule,
   ],
   controllers: [],
   providers: [],
