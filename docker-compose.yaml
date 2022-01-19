@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql
+    command: --innodb-use-native-aio=0
+    container_name: mysql
+    tty: true
+    volumes:
+      - ./data/:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=medicos
+      - MYSQL_ROOT_PASSWORD=medicos
+    networks:
+      - medicos-network
+  
+  nest:
+    build:
+      context: .
+    container_name: nest
+    entrypoint: dockerize -wait tcp://mysql:3306 -timeout 20s docker-entrypoint.sh
+    networks:
+      - medicos-network
+    volumes:
+      - ./:/usr/src/app
+    tty: true
+    depends_on:
+      - mysql
+    command: >
+      sh -c "npm install &&
+            npm run start:dev"
+
+  nginx:
+    build:
+      context: ./nginx
+    container_name: nginx
+    ports:
+      - 80:80
+    networks:
+      - medicos-network
+    depends_on:
+      - nest
+
+networks:
+  medicos-network:
+    driver: bridge
