@@ -1,8 +1,14 @@
+import { Address } from 'src/addresses/entities/address.entity';
+import { Specialty } from 'src/specialties/entities/specialty.entity';
 import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinColumn,
+  JoinTable,
+  ManyToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -22,6 +28,21 @@ export class Doctor {
 
   @Column({ type: 'numeric' })
   cellPhone: number;
+
+  @OneToOne(() => Address, {
+    cascade: true,
+    eager: true,
+  })
+  @JoinColumn({ name: 'address_id' })
+  address: string;
+
+  @ManyToMany(() => Specialty)
+  @JoinTable({
+    name: 'specialties_doctors',
+    joinColumns: [{ name: 'doctor_id' }],
+    inverseJoinColumns: [{ name: 'specialty_id' }],
+  })
+  specialties: [];
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
