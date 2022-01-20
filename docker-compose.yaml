@@ -29,6 +29,7 @@ services:
     command: >
       sh -c "npm install &&
              rm -rf dist &&
+             npm run typeorm:run &&
              npm run start:dev"
 
   nginx:
