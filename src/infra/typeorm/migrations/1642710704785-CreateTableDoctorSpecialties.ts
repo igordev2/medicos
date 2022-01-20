@@ -14,8 +14,8 @@ export class CreateTableDoctorSpecialties1642710704785
             isPrimary: true,
           },
           {
-            name: 'specialty_id(36)',
-            type: 'varchar',
+            name: 'specialty_id',
+            type: 'varchar(36)',
             isPrimary: true,
           },
           {
@@ -35,7 +35,7 @@ export class CreateTableDoctorSpecialties1642710704785
             onUpdate: 'CASCADE',
           },
           {
-            name: 'FK_SpecialtyDoctor',
+            name: 'FKSpecialtyDoctor',
             referencedTableName: 'specialties',
             referencedColumnNames: ['id'],
             columnNames: ['specialty_id'],
