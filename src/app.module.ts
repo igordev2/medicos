@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DoctorsModule } from './doctors/doctors.module';
-import { AddressesModule } from './addresses/addresses.module';
+import { AddressesModule } from './modules/addresses/addresses.module';
 import { SpecialtiesModule } from './specialties/specialties.module';
 
 @Module({
