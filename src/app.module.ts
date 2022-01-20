@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { DoctorsModule } from './doctors/doctors.module';
+import { DoctorsModule } from './modules/doctors/doctors.module';
 import { AddressesModule } from './modules/addresses/addresses.module';
-import { SpecialtiesModule } from './specialties/specialties.module';
+import { SpecialtiesModule } from './modules/specialties/specialties.module';
 
 @Module({
   imports: [

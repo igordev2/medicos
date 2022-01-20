@@ -1,5 +1,5 @@
 import { Address } from 'src/modules/addresses/entities/address.entity';
-import { Specialty } from 'src/specialties/entities/specialty.entity';
+import { Specialty } from 'src/modules/specialties/entities/specialty.entity';
 import {
   Column,
   CreateDateColumn,
