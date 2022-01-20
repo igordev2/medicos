@@ -7,8 +7,8 @@ module.exports = {
   database: process.env.MYSQL_DATABASE,
   entities: [__dirname + '/**/*.entity{.js,.ts}'],
   synchronize: false,
-  migrations: ['typeorm/migration'],
+  migrations: ['src/infra/typeorm/migrations'],
   cli: {
-    migrationsDir: 'typeorm/migration',
+    migrationsDir: 'src/infra/typeorm/migrations',
   },
 };
