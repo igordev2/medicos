@@ -8,8 +8,6 @@ services:
     tty: true
     ports:
       - 3306:3306
-    volumes:
-      - ./data/:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
@@ -20,7 +18,7 @@ services:
     build:
       context: .
     container_name: nest
-    entrypoint: dockerize -wait tcp://mysql:3306 -timeout 20s docker-entrypoint.sh
+    entrypoint: dockerize -wait tcp://mysql:3306 -timeout 60s docker-entrypoint.sh
     networks:
       - medicos-network
     volumes:
