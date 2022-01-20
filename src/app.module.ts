@@ -16,7 +16,11 @@ import { SpecialtiesModule } from './specialties/specialties.module';
       password: process.env.MYSQL_PASSWORD,
       database: process.env.MYSQL_DATABASE,
       entities: [__dirname + '/**/*.entity{.js,.ts}'],
-      synchronize: true,
+      synchronize: false,
+      migrations: ['src/typeorm/migration'],
+      cli: {
+        migrationsDir: 'src/typeorm/migration',
+      },
     }),
     DoctorsModule,
     AddressesModule,
