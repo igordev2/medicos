@@ -26,12 +26,13 @@ export class Doctor {
   @Column({ type: 'numeric' })
   landline: number;
 
-  @Column({ type: 'numeric' })
+  @Column({ type: 'numeric', name: 'cellphone' })
   cellPhone: number;
 
   @OneToOne(() => Address, {
     cascade: true,
     eager: true,
+    nullable: true,
   })
   @JoinColumn({ name: 'address_id' })
   address: string;
