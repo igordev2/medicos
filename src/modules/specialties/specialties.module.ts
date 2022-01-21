@@ -6,10 +6,20 @@ import { CreateSpecialtiesController } from './usecases/create/create.specialtie
 import { CreateSpecialtiesUseCase } from './usecases/create/create.specialties.usecase';
 import { ListSpecialtiesController } from './usecases/list/list-specialties.controller';
 import { ListSpecialtiesUseCase } from './usecases/list/list-specialties.usecase';
+import { UpdateSpecialtiesController } from './usecases/update/update-specialties.controller';
+import { UpdateSpecialtiesUseCase } from './usecases/update/update-specialties.usecase';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Specialty, SpecialtiesRepository])],
-  controllers: [CreateSpecialtiesController, ListSpecialtiesController],
-  providers: [CreateSpecialtiesUseCase, ListSpecialtiesUseCase],
+  controllers: [
+    CreateSpecialtiesController,
+    UpdateSpecialtiesController,
+    ListSpecialtiesController,
+  ],
+  providers: [
+    CreateSpecialtiesUseCase,
+    UpdateSpecialtiesUseCase,
+    ListSpecialtiesUseCase,
+  ],
 })
 export class SpecialtiesModule {}
