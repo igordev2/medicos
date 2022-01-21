@@ -8,7 +8,7 @@ import {
   Put,
 } from '@nestjs/common';
 import { UpdateSpecialtiesDto } from '../../dtos/update-specialties.dto';
-import { UpdateSpecialtiesUseCase } from './update-specialties.usecase';
+import { UpdateSpecialtiesUseCase } from './update-specialty.usecase';
 
 @Controller('api/v1/specialties')
 export class UpdateSpecialtiesController {

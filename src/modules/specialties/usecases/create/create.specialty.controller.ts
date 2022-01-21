@@ -1,6 +1,6 @@
 import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
 import { CreateSpecialtiesDto } from '../../dtos/create-specialties.dto';
-import { CreateSpecialtiesUseCase } from './create.specialties.usecase';
+import { CreateSpecialtiesUseCase } from './create.specialty.usecase';
 
 @Controller('api/v1/specialties')
 export class CreateSpecialtiesController {
