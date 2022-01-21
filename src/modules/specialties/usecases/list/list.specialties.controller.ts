@@ -1,9 +1,9 @@
 import { Controller, Get, HttpCode, HttpStatus } from '@nestjs/common';
-import { ListSpecialties } from './list.specialties';
+import { ListSpecialtiesUseCase } from './list.specialties.usecase';
 
 @Controller('api/v1/specialties')
 export class ListSpecialtiesController {
-  constructor(private readonly listSpecialties: ListSpecialties) {}
+  constructor(private readonly listSpecialties: ListSpecialtiesUseCase) {}
 
   @Get()
   @HttpCode(HttpStatus.OK)
