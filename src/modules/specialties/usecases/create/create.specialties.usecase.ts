@@ -9,9 +9,8 @@ export class CreateSpecialtiesUseCase {
 
   async execute({ description }: CreateSpecialtiesDto): Promise<Specialty> {
     const specialtyExist = await this.repository.FindByDescription(description);
-    if (specialtyExist) {
+    if (specialtyExist)
       throw new BadRequestException('Specialty already exists!');
-    }
 
     const specialties = await this.repository.Create(
       new Specialty(description),
