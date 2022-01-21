@@ -1,4 +1,8 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { UpdateSpecialtiesDto } from '../../dtos/update-specialties.dto';
 import { Specialty } from '../../entities/specialty.entity';
 import { SpecialtiesRepository } from '../../repository/specialties.repository';
@@ -14,13 +18,13 @@ export class UpdateSpecialtiesUseCase {
     const specialtyExistId = await this.repository.Get(id);
 
     if (!specialtyExistId)
-      throw new BadRequestException('Specialty does not exists!');
+      throw new NotFoundException('Specialty does not exists!');
 
-    const specialtyExist = await this.repository.FindByDescription(
+    const specialtyExistDescription = await this.repository.FindByDescription(
       updateSpecialtiesDto.description,
     );
 
-    if (specialtyExist)
+    if (specialtyExistDescription)
       throw new BadRequestException('Specialty already exists!');
 
     specialtyExistId.description = updateSpecialtiesDto.description;
