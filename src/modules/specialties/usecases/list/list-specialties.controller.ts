@@ -1,5 +1,5 @@
 import { Controller, Get, HttpCode, HttpStatus } from '@nestjs/common';
-import { ListSpecialtiesUseCase } from './list.specialties.usecase';
+import { ListSpecialtiesUseCase } from './list-specialties.usecase';
 
 @Controller('api/v1/specialties')
 export class ListSpecialtiesController {
