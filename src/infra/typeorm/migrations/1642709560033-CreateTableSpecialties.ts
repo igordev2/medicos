@@ -15,6 +15,7 @@ export class CreateTableSpecialties1642709560033 implements MigrationInterface {
           {
             name: 'description',
             type: 'varchar',
+            isUnique: true,
           },
           {
             name: 'created_at',

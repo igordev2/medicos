@@ -19,4 +19,8 @@ export class Specialty {
 
   @DeleteDateColumn({ name: 'deleted_at' })
   deletedAt: Date;
+
+  constructor(description: string) {
+    this.description = description;
+  }
 }
