@@ -8,6 +8,8 @@ import { DeleteSpecialtyController } from './usecases/delete/delete-specialty.co
 import { DeleteSpecialtyUseCase } from './usecases/delete/delete-specialty.usecase';
 import { ListSpecialtiesController } from './usecases/list/list-specialties.controller';
 import { ListSpecialtiesUseCase } from './usecases/list/list-specialties.usecase';
+import { SearchSpecialtiesController } from './usecases/search/search-specialties.controller';
+import { SearchSpecialtiesUseCase } from './usecases/search/search-specialties.usecase';
 import { UpdateSpecialtiesController } from './usecases/update/update-specialty.controller';
 import { UpdateSpecialtiesUseCase } from './usecases/update/update-specialty.usecase';
 
@@ -18,12 +20,14 @@ import { UpdateSpecialtiesUseCase } from './usecases/update/update-specialty.use
     UpdateSpecialtiesController,
     ListSpecialtiesController,
     DeleteSpecialtyController,
+    SearchSpecialtiesController,
   ],
   providers: [
     CreateSpecialtiesUseCase,
     UpdateSpecialtiesUseCase,
     ListSpecialtiesUseCase,
     DeleteSpecialtyUseCase,
+    SearchSpecialtiesUseCase,
   ],
 })
 export class SpecialtiesModule {}
