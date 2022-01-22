@@ -7,10 +7,12 @@ import {
   ParseUUIDPipe,
   Put,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { UpdateSpecialtiesDto } from '../../dtos/update-specialties.dto';
 import { UpdateSpecialtiesUseCase } from './update-specialty.usecase';
 
 @Controller('api/v1/specialties')
+@ApiTags('Specialties')
 export class UpdateSpecialtiesController {
   constructor(private readonly updateSpecialties: UpdateSpecialtiesUseCase) {}
 

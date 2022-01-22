@@ -6,9 +6,11 @@ import {
   Param,
   ParseUUIDPipe,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { DeleteDoctorUseCase } from './delete-doctor.usecase';
 
 @Controller('api/v1/doctors')
+@ApiTags('Doctors')
 export class DeleteDoctorController {
   constructor(private readonly deleteDoctor: DeleteDoctorUseCase) {}
 

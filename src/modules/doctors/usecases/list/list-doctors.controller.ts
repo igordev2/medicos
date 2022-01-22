@@ -1,7 +1,9 @@
 import { Controller, Get, HttpCode, HttpStatus } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { ListDoctorsUseCase } from './list-doctors.usecase';
 
 @Controller('api/v1/doctors')
+@ApiTags('Doctors')
 export class ListDoctorsController {
   constructor(private readonly listDoctors: ListDoctorsUseCase) {}
 
