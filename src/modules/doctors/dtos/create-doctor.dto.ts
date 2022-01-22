@@ -4,11 +4,13 @@ import {
   IsInt,
   IsNotEmpty,
   IsString,
+  Length,
 } from 'class-validator';
 
 export class CreateDoctorDto {
   @IsNotEmpty()
   @IsString()
+  @Length(10, 120)
   name: string;
 
   @IsNotEmpty()
@@ -24,8 +26,8 @@ export class CreateDoctorDto {
   cellPhone: number;
 
   @IsNotEmpty()
-  @IsString()
-  zipCode: string;
+  @IsInt()
+  zipCode: number;
 
   @IsNotEmpty()
   @IsArray()

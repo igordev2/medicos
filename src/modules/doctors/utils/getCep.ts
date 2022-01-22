@@ -10,7 +10,7 @@ interface ICep {
 }
 
 export class ViaCep {
-  static async getCep(zipCode: string) {
+  static async getCep(zipCode: number) {
     try {
       const response = await axios.get<ICep>(
         `https://viacep.com.br/ws/${zipCode}/json/`,
