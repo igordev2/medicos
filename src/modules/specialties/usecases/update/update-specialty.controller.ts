@@ -7,7 +7,7 @@ import {
   ParseUUIDPipe,
   Put,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { UpdateSpecialtiesDto } from '../../dtos/update-specialties.dto';
 import { UpdateSpecialtiesUseCase } from './update-specialty.usecase';
 
@@ -18,6 +18,7 @@ export class UpdateSpecialtiesController {
 
   @Put(':id')
   @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'update specialty' })
   async handle(
     @Param('id', new ParseUUIDPipe()) id: string,
     @Body() updateSpecialtiesDto: UpdateSpecialtiesDto,

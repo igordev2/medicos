@@ -14,6 +14,8 @@ import { DeleteDoctorController } from './usecases/delete/delete-doctor.controll
 import { DeleteDoctorUseCase } from './usecases/delete/delete-doctor.usecase';
 import { ListDoctorsController } from './usecases/list/list-doctors.controller';
 import { ListDoctorsUseCase } from './usecases/list/list-doctors.usecase';
+import { SearchDoctorController } from './usecases/search/search-doctor.controller';
+import { SearchDoctorUseCase } from './usecases/search/search-doctor.usecase';
 
 @Module({
   imports: [
@@ -32,7 +34,13 @@ import { ListDoctorsUseCase } from './usecases/list/list-doctors.usecase';
     CreateDoctorController,
     ListDoctorsController,
     DeleteDoctorController,
+    SearchDoctorController,
   ],
-  providers: [CreateDoctorUseCase, ListDoctorsUseCase, DeleteDoctorUseCase],
+  providers: [
+    CreateDoctorUseCase,
+    ListDoctorsUseCase,
+    DeleteDoctorUseCase,
+    SearchDoctorUseCase,
+  ],
 })
 export class DoctorsModule {}

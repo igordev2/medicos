@@ -6,7 +6,7 @@ import {
   Param,
   ParseUUIDPipe,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { DeleteSpecialtyUseCase } from './delete-specialty.usecase';
 
 @Controller('api/v1/specialties')
@@ -16,6 +16,7 @@ export class DeleteSpecialtyController {
 
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
+  @ApiOperation({ summary: 'delete specialty' })
   async handle(@Param('id', new ParseUUIDPipe()) id: string) {
     return await this.deleteSpecialty.execute(id);
   }

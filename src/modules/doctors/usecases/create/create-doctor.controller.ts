@@ -1,5 +1,5 @@
 import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CreateDoctorDto } from '../../dtos/create-doctor.dto';
 import { CreateDoctorUseCase } from './create-doctor.usecase';
 
@@ -10,6 +10,7 @@ export class CreateDoctorController {
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
+  @ApiOperation({ summary: 'create doctor' })
   async handle(@Body() createDoctorDto: CreateDoctorDto) {
     return await this.createDoctor.execute(createDoctorDto);
   }
