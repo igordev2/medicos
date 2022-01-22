@@ -37,6 +37,7 @@ export class Doctor {
   address: Address;
 
   @ManyToMany(() => Specialty, {
+    cascade: true,
     eager: true,
   })
   @JoinTable({
