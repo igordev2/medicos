@@ -32,7 +32,6 @@ export class Doctor {
   @OneToOne(() => Address, {
     cascade: true,
     eager: true,
-    nullable: true,
   })
   @JoinColumn({ name: 'address_id' })
   address: string;

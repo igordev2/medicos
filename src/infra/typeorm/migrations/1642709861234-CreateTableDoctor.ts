@@ -31,7 +31,6 @@ export class CreateTableDoctor1642709861234 implements MigrationInterface {
           {
             name: 'address_id',
             type: 'varchar(36)',
-            isNullable: true,
           },
           {
             name: 'created_at',
