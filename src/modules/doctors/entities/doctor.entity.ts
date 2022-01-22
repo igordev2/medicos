@@ -34,19 +34,37 @@ export class Doctor {
     eager: true,
   })
   @JoinColumn({ name: 'address_id' })
-  address: string;
+  address: Address;
 
-  @ManyToMany(() => Specialty)
+  @ManyToMany(() => Specialty, {
+    eager: true,
+  })
   @JoinTable({
     name: 'specialties_doctors',
     joinColumns: [{ name: 'doctor_id' }],
     inverseJoinColumns: [{ name: 'specialty_id' }],
   })
-  specialties: [];
+  specialties: Specialty[];
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
   @DeleteDateColumn({ name: 'deleted_at' })
   deletedAt: Date;
+
+  constructor(
+    name: string,
+    crm: number,
+    landline: number,
+    cellPhone: number,
+    address: Address,
+    specialties: Specialty[],
+  ) {
+    this.name = name;
+    this.crm = crm;
+    this.landline = landline;
+    this.cellPhone = cellPhone;
+    this.address = address;
+    this.specialties = specialties;
+  }
 }

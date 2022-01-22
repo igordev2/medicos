@@ -39,6 +39,7 @@ export class CreateTableAddresses1642642148111 implements MigrationInterface {
           {
             name: 'deleted_at',
             type: 'timestamp',
+            isNullable: true,
           },
         ],
       }),

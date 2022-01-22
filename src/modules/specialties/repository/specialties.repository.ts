@@ -38,4 +38,8 @@ export class SpecialtiesRepository
   async FindByDescription(description: string): Promise<Specialty> {
     return await this.findOne({ description });
   }
+
+  async FindByIds(ids: string[]): Promise<Specialty[]> {
+    return await this.findByIds(ids);
+  }
 }

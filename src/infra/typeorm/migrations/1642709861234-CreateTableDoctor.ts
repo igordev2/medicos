@@ -17,20 +17,21 @@ export class CreateTableDoctor1642709861234 implements MigrationInterface {
           },
           {
             name: 'crm',
-            type: 'numeric',
+            type: 'varchar',
             precision: 7,
           },
           {
             name: 'landline',
-            type: 'numeric',
+            type: 'bigint',
           },
           {
             name: 'cellphone',
-            type: 'varchar(120)',
+            type: 'bigint',
           },
           {
             name: 'address_id',
             type: 'varchar(36)',
+            isNullable: true,
           },
           {
             name: 'created_at',

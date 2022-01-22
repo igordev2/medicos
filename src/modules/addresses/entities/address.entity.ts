@@ -31,4 +31,18 @@ export class Address {
 
   @DeleteDateColumn({ name: 'deleted_at' })
   deletedAt: Date;
+
+  constructor(
+    zipCode: string,
+    streetAddress: string,
+    neighborhood: string,
+    locality: string,
+    uf: string,
+  ) {
+    this.zipCode = zipCode;
+    this.streetAddress = streetAddress;
+    this.neighborhood = neighborhood;
+    this.locality = locality;
+    this.uf = uf;
+  }
 }
