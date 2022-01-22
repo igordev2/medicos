@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateAddressUseCase } from 'src/modules/addresses/usecases/create/create-address.usecase';
+import { Specialty } from 'src/modules/specialties/entities/specialty.entity';
 
 import { SpecialtiesRepository } from 'src/modules/specialties/repository/specialties.repository';
 import { CreateDoctorDto } from '../../dtos/create-doctor.dto';
@@ -23,12 +24,18 @@ export class CreateDoctorUseCase {
     specialties,
     zipCode,
   }: CreateDoctorDto) {
-    const specialtiesExists = await this.repositorySpecialties.FindByIds(
-      specialties,
-    );
+    const specialtiesArray: Specialty[] = [];
 
-    if (!(specialties.length === specialtiesExists.length))
-      throw new NotFoundException('Some specialty is invalid');
+    for (let i = 0; i < specialties.length; i++) {
+      const specialtiesExist = await this.repositorySpecialties.Get(
+        specialties[i],
+      );
+      if (!specialtiesExist) {
+        throw new NotFoundException(`Specialty is invalid at position [${i}]`);
+      }
+
+      specialtiesArray.push(specialtiesExist);
+    }
 
     const { cep, logradouro, bairro, localidade, uf } = await ViaCep.getCep(
       zipCode,
@@ -43,7 +50,7 @@ export class CreateDoctorUseCase {
     });
 
     const doctor = await this.repositoryDoctor.Create(
-      new Doctor(name, crm, landline, cellPhone, address, specialtiesExists),
+      new Doctor(name, crm, landline, cellPhone, address, specialtiesArray),
     );
 
     return doctor;
