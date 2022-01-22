@@ -1,5 +1,6 @@
 import { Controller, Get, HttpCode, HttpStatus } from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Specialty } from '../../entities/specialty.entity';
 import { ListSpecialtiesUseCase } from './list-specialties.usecase';
 
 @Controller('api/v1/specialties')
@@ -10,6 +11,11 @@ export class ListSpecialtiesController {
   @Get()
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'list specialties' })
+  @ApiResponse({
+    status: 200,
+    description: 'list specialties',
+    type: [Specialty],
+  })
   async handle() {
     return await this.listSpecialties.execute();
   }
