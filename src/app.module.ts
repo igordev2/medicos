@@ -4,10 +4,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DoctorsModule } from './modules/doctors/doctors.module';
 import { AddressesModule } from './modules/addresses/addresses.module';
 import { SpecialtiesModule } from './modules/specialties/specialties.module';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: process.env.MYSQL_HOST,
@@ -26,7 +30,7 @@ import { SpecialtiesModule } from './modules/specialties/specialties.module';
     AddressesModule,
     SpecialtiesModule,
   ],
-  controllers: [],
-  providers: [],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
