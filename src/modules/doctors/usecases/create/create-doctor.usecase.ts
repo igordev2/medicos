@@ -50,7 +50,14 @@ export class CreateDoctorUseCase {
     });
 
     const doctor = await this.repositoryDoctor.Create(
-      new Doctor(name, crm, landline, cellPhone, address, specialtiesArray),
+      new Doctor({
+        name,
+        crm,
+        landline,
+        cellPhone,
+        address,
+        specialties: specialtiesArray,
+      }),
     );
 
     return doctor;
