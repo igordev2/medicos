@@ -21,6 +21,7 @@ describe('Update specialty usecase', () => {
             merge: jest.fn().mockResolvedValue(specialty),
             findOne: jest.fn().mockResolvedValue(specialty),
             find: jest.fn().mockResolvedValue(specialty),
+            save: jest.fn().mockResolvedValue(specialty),
           },
         },
       ],
@@ -42,7 +43,7 @@ describe('Update specialty usecase', () => {
 
   describe('execute', () => {
     it('should updated specialty', async () => {
-      jest.spyOn(repository, 'find').mockResolvedValue(null);
+      jest.spyOn(repository, 'find').mockResolvedValue([]);
 
       const result = await updateSpecialtyUseCase.execute('1', {
         description: 'updated specialty',
@@ -64,6 +65,7 @@ describe('Update specialty usecase', () => {
     });
 
     it('should not update specialty with the same description', async () => {
+      jest.spyOn(repository, 'find').mockResolvedValue([specialty]);
       try {
         await updateSpecialtyUseCase.execute('1', {
           description: 'updated specialty',

@@ -64,11 +64,11 @@ export class Doctor {
   deletedAt: Date;
 
   constructor(doctor?: Partial<Doctor>) {
-    this.name = doctor.name;
-    this.crm = doctor.crm;
-    this.landline = doctor.landline;
-    this.cellPhone = doctor.cellPhone;
-    this.address = doctor.address;
-    this.specialties = doctor.specialties;
+    this.name = doctor?.name;
+    this.crm = doctor?.crm;
+    this.landline = doctor?.landline;
+    this.cellPhone = doctor?.cellPhone;
+    this.address = doctor?.address;
+    this.specialties = doctor?.specialties;
   }
 }

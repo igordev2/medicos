@@ -42,10 +42,10 @@ export class Address {
   deletedAt: Date;
 
   constructor(address?: Partial<Address>) {
-    this.zipCode = address.zipCode;
-    this.streetAddress = address.streetAddress;
-    this.neighborhood = address.neighborhood;
-    this.locality = address.locality;
-    this.uf = address.uf;
+    this.zipCode = address?.zipCode;
+    this.streetAddress = address?.streetAddress;
+    this.neighborhood = address?.neighborhood;
+    this.locality = address?.locality;
+    this.uf = address?.uf;
   }
 }

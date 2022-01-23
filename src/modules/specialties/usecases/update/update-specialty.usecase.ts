@@ -28,12 +28,14 @@ export class UpdateSpecialtyUseCase {
       description: updateSpecialtiesDto.description,
     });
 
-    if (specialtyExistDescription)
+    if (specialtyExistDescription.length > 0)
       throw new BadRequestException('Specialty already exists!');
 
     specialtyExistId.description = updateSpecialtiesDto.description;
 
-    const updateSpecialties = await this.repository.merge(specialtyExistId);
+    const updateSpecialties = this.repository.merge(specialtyExistId);
+    await this.repository.save(updateSpecialties);
+
     return updateSpecialties;
   }
 }
