@@ -2,8 +2,8 @@ import { ApiPropertyOptional } from '@nestjs/swagger';
 
 export class QuerySpecialtiesDto {
   @ApiPropertyOptional()
-  id: string;
+  id?: string;
 
   @ApiPropertyOptional()
-  description: string;
+  description?: string;
 }

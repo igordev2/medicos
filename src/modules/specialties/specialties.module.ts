@@ -10,21 +10,21 @@ import { ListSpecialtiesController } from './usecases/list/list-specialties.cont
 import { ListSpecialtiesUseCase } from './usecases/list/list-specialties.usecase';
 import { SearchSpecialtiesController } from './usecases/search/search-specialties.controller';
 import { SearchSpecialtiesUseCase } from './usecases/search/search-specialties.usecase';
-import { UpdateSpecialtiesController } from './usecases/update/update-specialty.controller';
-import { UpdateSpecialtiesUseCase } from './usecases/update/update-specialty.usecase';
+import { UpdateSpecialtyController } from './usecases/update/update-specialty.controller';
+import { UpdateSpecialtyUseCase } from './usecases/update/update-specialty.usecase';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Specialty, SpecialtiesRepository])],
   controllers: [
     CreateSpecialtiesController,
-    UpdateSpecialtiesController,
+    UpdateSpecialtyController,
     ListSpecialtiesController,
     DeleteSpecialtyController,
     SearchSpecialtiesController,
   ],
   providers: [
     CreateSpecialtiesUseCase,
-    UpdateSpecialtiesUseCase,
+    UpdateSpecialtyUseCase,
     ListSpecialtiesUseCase,
     DeleteSpecialtyUseCase,
     SearchSpecialtiesUseCase,

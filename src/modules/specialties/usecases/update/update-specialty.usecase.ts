@@ -8,7 +8,7 @@ import { Specialty } from '../../entities/specialty.entity';
 import { SpecialtiesRepository } from '../../repository/specialties.repository';
 
 @Injectable()
-export class UpdateSpecialtiesUseCase {
+export class UpdateSpecialtyUseCase {
   constructor(private readonly repository: SpecialtiesRepository) {}
 
   async execute(
