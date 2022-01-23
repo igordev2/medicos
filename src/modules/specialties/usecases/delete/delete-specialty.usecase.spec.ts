@@ -1,24 +1,25 @@
 import { NotFoundException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
+import { getRepositoryToken } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { Specialty } from '../../entities/specialty.entity';
-import { SpecialtiesRepository } from '../../repository/specialties.repository';
 import { DeleteSpecialtyUseCase } from './delete-specialty.usecase';
 
 const specialty = new Specialty('specialty');
 
 describe('Delete specialty usecase', () => {
   let deleteSpecialtyUseCase: DeleteSpecialtyUseCase;
-  let specialtiesRepository: SpecialtiesRepository;
+  let repository: Repository<Specialty>;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         DeleteSpecialtyUseCase,
         {
-          provide: SpecialtiesRepository,
+          provide: getRepositoryToken(Specialty),
           useValue: {
-            softDelete: jest.fn().mockResolvedValue(undefined),
-            Get: jest.fn().mockResolvedValue(specialty),
+            findOne: jest.fn().mockResolvedValue(specialty),
+            softDelete: jest.fn().mockReturnValue(specialty),
           },
         },
       ],
@@ -28,14 +29,14 @@ describe('Delete specialty usecase', () => {
       DeleteSpecialtyUseCase,
     );
 
-    specialtiesRepository = module.get<SpecialtiesRepository>(
-      SpecialtiesRepository,
+    repository = module.get<Repository<Specialty>>(
+      getRepositoryToken(Specialty),
     );
   });
 
   it('should be defined', () => {
     expect(deleteSpecialtyUseCase).toBeDefined();
-    expect(specialtiesRepository).toBeDefined();
+    expect(repository).toBeDefined();
   });
 
   describe('execute', () => {
@@ -46,7 +47,7 @@ describe('Delete specialty usecase', () => {
     });
 
     it('should not remove specialty not found', async () => {
-      jest.spyOn(specialtiesRepository, 'Get').mockResolvedValue(null);
+      jest.spyOn(repository, 'findOne').mockResolvedValue(null);
 
       try {
         await deleteSpecialtyUseCase.execute('1');

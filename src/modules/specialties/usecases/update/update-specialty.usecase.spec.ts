@@ -1,25 +1,26 @@
 import { BadRequestException, NotFoundException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
+import { getRepositoryToken } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { Specialty } from '../../entities/specialty.entity';
-import { SpecialtiesRepository } from '../../repository/specialties.repository';
 import { UpdateSpecialtyUseCase } from './update-specialty.usecase';
 
 const specialty = new Specialty('updated specialty');
 
 describe('Update specialty usecase', () => {
   let updateSpecialtyUseCase: UpdateSpecialtyUseCase;
-  let specialtiesRepository: SpecialtiesRepository;
+  let repository: Repository<Specialty>;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         UpdateSpecialtyUseCase,
         {
-          provide: SpecialtiesRepository,
+          provide: getRepositoryToken(Specialty),
           useValue: {
-            Update: jest.fn().mockResolvedValue(specialty),
-            Get: jest.fn().mockResolvedValue(specialty),
-            FindByDescription: jest.fn().mockReturnValue(specialty),
+            merge: jest.fn().mockResolvedValue(specialty),
+            findOne: jest.fn().mockResolvedValue(specialty),
+            find: jest.fn().mockResolvedValue(specialty),
           },
         },
       ],
@@ -29,21 +30,19 @@ describe('Update specialty usecase', () => {
       UpdateSpecialtyUseCase,
     );
 
-    specialtiesRepository = module.get<SpecialtiesRepository>(
-      SpecialtiesRepository,
+    repository = module.get<Repository<Specialty>>(
+      getRepositoryToken(Specialty),
     );
   });
 
   it('should be defined', () => {
     expect(updateSpecialtyUseCase).toBeDefined();
-    expect(specialtiesRepository).toBeDefined();
+    expect(repository).toBeDefined();
   });
 
   describe('execute', () => {
     it('should updated specialty', async () => {
-      jest
-        .spyOn(specialtiesRepository, 'FindByDescription')
-        .mockResolvedValue(null);
+      jest.spyOn(repository, 'find').mockResolvedValue(null);
 
       const result = await updateSpecialtyUseCase.execute('1', {
         description: 'updated specialty',
@@ -53,7 +52,7 @@ describe('Update specialty usecase', () => {
     });
 
     it('should not update specialty not found', async () => {
-      jest.spyOn(specialtiesRepository, 'Get').mockResolvedValue(null);
+      jest.spyOn(repository, 'findOne').mockResolvedValue(null);
 
       try {
         await updateSpecialtyUseCase.execute('1', {

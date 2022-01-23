@@ -1,18 +1,20 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateAddressUseCase } from '../../../addresses/usecases/create/create-address.usecase';
-import { Specialty } from 'src/modules/specialties/entities/specialty.entity';
+import { Specialty } from '../../../specialties/entities/specialty.entity';
 
-import { SpecialtiesRepository } from '../../../specialties/repository/specialties.repository';
 import { CreateDoctorDto } from '../../dtos/create-doctor.dto';
 import { Doctor } from '../../entities/doctor.entity';
-import { DoctorsRepository } from '../../repository/doctors.repository';
 import { ViaCep } from '../../utils/getCep';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class CreateDoctorUseCase {
   constructor(
-    private readonly repositoryDoctor: DoctorsRepository,
-    private readonly repositorySpecialties: SpecialtiesRepository,
+    @InjectRepository(Doctor)
+    private readonly doctorRepository: Repository<Doctor>,
+    @InjectRepository(Specialty)
+    private readonly repositorySpecialties: Repository<Specialty>,
     private readonly createAddressUseCase: CreateAddressUseCase,
   ) {}
 
@@ -27,7 +29,7 @@ export class CreateDoctorUseCase {
     const specialtiesArray: Specialty[] = [];
 
     for (let i = 0; i < specialties.length; i++) {
-      const specialtiesExist = await this.repositorySpecialties.Get(
+      const specialtiesExist = await this.repositorySpecialties.findOne(
         specialties[i],
       );
       if (!specialtiesExist) {
@@ -49,15 +51,17 @@ export class CreateDoctorUseCase {
       uf,
     });
 
-    const doctor = await this.repositoryDoctor.Create(
-      new Doctor({
-        name,
-        crm,
-        landline,
-        cellPhone,
-        address,
-        specialties: specialtiesArray,
-      }),
+    const doctor = this.doctorRepository.create(
+      await this.doctorRepository.save(
+        new Doctor({
+          name,
+          crm,
+          landline,
+          cellPhone,
+          address,
+          specialties: specialtiesArray,
+        }),
+      ),
     );
 
     return doctor;

@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { getRepositoryToken } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { Specialty } from '../../entities/specialty.entity';
-import { SpecialtiesRepository } from '../../repository/specialties.repository';
 import { ListSpecialtiesUseCase } from './list-specialties.usecase';
 
 const specialties: Specialty[] = [
@@ -11,15 +12,16 @@ const specialties: Specialty[] = [
 
 describe('List specialties usecase', () => {
   let listSpecialtiesUseCase: ListSpecialtiesUseCase;
+  let repository: Repository<Specialty>;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         ListSpecialtiesUseCase,
         {
-          provide: SpecialtiesRepository,
+          provide: getRepositoryToken(Specialty),
           useValue: {
-            GetAll: jest.fn().mockResolvedValue(specialties),
+            find: jest.fn().mockResolvedValue(specialties),
           },
         },
       ],
@@ -28,10 +30,15 @@ describe('List specialties usecase', () => {
     listSpecialtiesUseCase = module.get<ListSpecialtiesUseCase>(
       ListSpecialtiesUseCase,
     );
+
+    repository = module.get<Repository<Specialty>>(
+      getRepositoryToken(Specialty),
+    );
   });
 
   it('should be defined', () => {
     expect(listSpecialtiesUseCase).toBeDefined();
+    expect(repository).toBeDefined();
   });
 
   describe('execute', () => {

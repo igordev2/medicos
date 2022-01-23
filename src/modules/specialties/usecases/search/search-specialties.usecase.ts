@@ -1,10 +1,15 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { QuerySpecialtiesDto } from '../../dtos/query-specialties.dto';
-import { SpecialtiesRepository } from '../../repository/specialties.repository';
+import { Specialty } from '../../entities/specialty.entity';
 
 @Injectable()
 export class SearchSpecialtiesUseCase {
-  constructor(private readonly specialtiesRepository: SpecialtiesRepository) {}
+  constructor(
+    @InjectRepository(Specialty)
+    private readonly specialtiesRepository: Repository<Specialty>,
+  ) {}
 
   async execute(query: QuerySpecialtiesDto) {
     return this.specialtiesRepository.find({

@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { getRepositoryToken } from '@nestjs/typeorm';
 import { Doctor } from '../../entities/doctor.entity';
-import { DoctorsRepository } from '../../repository/doctors.repository';
 import { ListDoctorsUseCase } from './list-doctors.usecase';
 
 const doctors: Doctor[] = [
@@ -18,9 +18,9 @@ describe('List specialties usecase', () => {
       providers: [
         ListDoctorsUseCase,
         {
-          provide: DoctorsRepository,
+          provide: getRepositoryToken(Doctor),
           useValue: {
-            GetAll: jest.fn().mockResolvedValue(doctors),
+            find: jest.fn().mockResolvedValue(doctors),
           },
         },
       ],

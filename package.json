@@ -78,6 +78,14 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "modulePathIgnorePatterns": [
+      "<rootDir>/infra",
+      "<rootDir>/app.module.ts",
+      "<rootDir>/main.ts",
+      "<rootDir>/modules/specialties/specialties.module.ts",
+      "<rootDir>/modules/doctors/doctors.module.ts",
+      "<rootDir>/modules/addresses/addresses.module.ts"
+    ]
   }
 }

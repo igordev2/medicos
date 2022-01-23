@@ -1,11 +1,12 @@
 import { NotFoundException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import { AddressesRepository } from '../../../addresses/repository/addresses.repository';
+import { Specialty } from '../../../specialties/entities/specialty.entity';
 import { CreateAddressUseCase } from '../../../addresses/usecases/create/create-address.usecase';
-import { SpecialtiesRepository } from '../../../specialties/repository/specialties.repository';
 import { Doctor } from '../../entities/doctor.entity';
-import { DoctorsRepository } from '../../repository/doctors.repository';
 import { CreateDoctorUseCase } from './create-doctor.usecase';
+import { getRepositoryToken } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Address } from '../../../addresses/entities/address.entity';
 
 const doctor: Doctor = new Doctor({
   name: 'Igor',
@@ -16,8 +17,9 @@ const doctor: Doctor = new Doctor({
 
 describe('Create Doctor usecase', () => {
   let createDoctorUseCase: CreateDoctorUseCase;
-  let doctorsRepository: DoctorsRepository;
-  let specialtiesRepository: SpecialtiesRepository;
+  let doctorsRepository: Repository<Doctor>;
+  let specialtiesRepository: Repository<Specialty>;
+  let addressesRepository: Repository<Address>;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -25,23 +27,25 @@ describe('Create Doctor usecase', () => {
         CreateDoctorUseCase,
         CreateAddressUseCase,
         {
-          provide: SpecialtiesRepository,
+          provide: getRepositoryToken(Specialty),
           useValue: {
-            Get: jest.fn().mockResolvedValue(doctor),
+            findOne: jest.fn().mockResolvedValue(doctor),
           },
         },
         {
-          provide: AddressesRepository,
+          provide: getRepositoryToken(Address),
           useValue: {
-            Create: jest.fn().mockResolvedValue(doctor),
+            create: jest.fn().mockResolvedValue(doctor),
+            save: jest.fn().mockResolvedValue(doctor),
           },
         },
         {
-          provide: DoctorsRepository,
+          provide: getRepositoryToken(Doctor),
           useValue: {
-            Create: jest.fn().mockResolvedValue(doctor),
-            Get: jest.fn().mockResolvedValue(doctor),
-            FindByDescription: jest.fn().mockReturnValue(doctor),
+            create: jest.fn().mockResolvedValue(doctor),
+            save: jest.fn().mockResolvedValue(doctor),
+            findOne: jest.fn().mockResolvedValue(doctor),
+            find: jest.fn().mockReturnValue(doctor),
           },
         },
       ],
@@ -49,10 +53,16 @@ describe('Create Doctor usecase', () => {
 
     createDoctorUseCase = module.get<CreateDoctorUseCase>(CreateDoctorUseCase);
 
-    doctorsRepository = module.get<DoctorsRepository>(DoctorsRepository);
+    doctorsRepository = module.get<Repository<Doctor>>(
+      getRepositoryToken(Doctor),
+    );
 
-    specialtiesRepository = module.get<SpecialtiesRepository>(
-      SpecialtiesRepository,
+    specialtiesRepository = module.get<Repository<Specialty>>(
+      getRepositoryToken(Specialty),
+    );
+
+    addressesRepository = module.get<Repository<Address>>(
+      getRepositoryToken(Address),
     );
   });
 
@@ -60,6 +70,7 @@ describe('Create Doctor usecase', () => {
     expect(createDoctorUseCase).toBeDefined();
     expect(doctorsRepository).toBeDefined();
     expect(specialtiesRepository).toBeDefined();
+    expect(addressesRepository).toBeDefined();
   });
 
   describe('execute', () => {
@@ -76,7 +87,7 @@ describe('Create Doctor usecase', () => {
     });
 
     it('should not create a doctor as a non-existent specialty', async () => {
-      jest.spyOn(specialtiesRepository, 'Get').mockResolvedValue(null);
+      jest.spyOn(specialtiesRepository, 'findOne').mockResolvedValue(null);
       try {
         await createDoctorUseCase.execute({
           name: 'Igor',

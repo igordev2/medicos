@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Specialty } from './entities/specialty.entity';
-import { SpecialtiesRepository } from './repository/specialties.repository';
 import { CreateSpecialtyController } from './usecases/create/create.specialty.controller';
 import { CreateSpecialtyUseCase } from './usecases/create/create.specialty.usecase';
 import { DeleteSpecialtyController } from './usecases/delete/delete-specialty.controller';
@@ -14,7 +13,7 @@ import { UpdateSpecialtyController } from './usecases/update/update-specialty.co
 import { UpdateSpecialtyUseCase } from './usecases/update/update-specialty.usecase';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Specialty, SpecialtiesRepository])],
+  imports: [TypeOrmModule.forFeature([Specialty])],
   controllers: [
     CreateSpecialtyController,
     UpdateSpecialtyController,

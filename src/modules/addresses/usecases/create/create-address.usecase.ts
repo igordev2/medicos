@@ -1,11 +1,14 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateAddressDto } from '../../dtos/create-adress.dto';
 import { Address } from '../../entities/address.entity';
-import { AddressesRepository } from '../../repository/addresses.repository';
 
 @Injectable()
 export class CreateAddressUseCase {
-  constructor(private readonly repository: AddressesRepository) {}
+  constructor(
+    @InjectRepository(Address) private readonly repository: Repository<Address>,
+  ) {}
 
   async execute({
     zipCode,
@@ -14,8 +17,10 @@ export class CreateAddressUseCase {
     locality,
     uf,
   }: CreateAddressDto) {
-    return await this.repository.Create(
-      new Address({ zipCode, streetAddress, neighborhood, locality, uf }),
+    return this.repository.create(
+      await this.repository.save(
+        new Address({ zipCode, streetAddress, neighborhood, locality, uf }),
+      ),
     );
   }
 }

@@ -3,33 +3,37 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { UpdateSpecialtiesDto } from '../../dtos/update-specialties.dto';
 import { Specialty } from '../../entities/specialty.entity';
-import { SpecialtiesRepository } from '../../repository/specialties.repository';
 
 @Injectable()
 export class UpdateSpecialtyUseCase {
-  constructor(private readonly repository: SpecialtiesRepository) {}
+  constructor(
+    @InjectRepository(Specialty)
+    private readonly repository: Repository<Specialty>,
+  ) {}
 
   async execute(
     id: string,
     updateSpecialtiesDto: UpdateSpecialtiesDto,
   ): Promise<Specialty> {
-    const specialtyExistId = await this.repository.Get(id);
+    const specialtyExistId = await this.repository.findOne(id);
 
     if (!specialtyExistId)
       throw new NotFoundException('Specialty does not exists!');
 
-    const specialtyExistDescription = await this.repository.FindByDescription(
-      updateSpecialtiesDto.description,
-    );
+    const specialtyExistDescription = await this.repository.find({
+      description: updateSpecialtiesDto.description,
+    });
 
     if (specialtyExistDescription)
       throw new BadRequestException('Specialty already exists!');
 
     specialtyExistId.description = updateSpecialtiesDto.description;
 
-    const updateSpecialties = await this.repository.Update(specialtyExistId);
+    const updateSpecialties = await this.repository.merge(specialtyExistId);
     return updateSpecialties;
   }
 }

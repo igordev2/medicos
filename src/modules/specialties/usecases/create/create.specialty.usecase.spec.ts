@@ -1,24 +1,26 @@
 import { BadRequestException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
+import { getRepositoryToken } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { Specialty } from '../../entities/specialty.entity';
-import { SpecialtiesRepository } from '../../repository/specialties.repository';
 import { CreateSpecialtyUseCase } from './create.specialty.usecase';
 
 const specialty = new Specialty('created specialty');
 
 describe('Create specialty usecase', () => {
   let createSpecialtyUseCase: CreateSpecialtyUseCase;
-  let specialtiesRepository: SpecialtiesRepository;
+  let repository: Repository<Specialty>;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         CreateSpecialtyUseCase,
         {
-          provide: SpecialtiesRepository,
+          provide: getRepositoryToken(Specialty),
           useValue: {
-            Create: jest.fn().mockResolvedValue(specialty),
-            FindByDescription: jest.fn().mockReturnValue(specialty),
+            create: jest.fn().mockResolvedValue(specialty),
+            findOne: jest.fn().mockReturnValue(specialty),
+            save: jest.fn().mockReturnValue(specialty),
           },
         },
       ],
@@ -28,21 +30,19 @@ describe('Create specialty usecase', () => {
       CreateSpecialtyUseCase,
     );
 
-    specialtiesRepository = module.get<SpecialtiesRepository>(
-      SpecialtiesRepository,
+    repository = module.get<Repository<Specialty>>(
+      getRepositoryToken(Specialty),
     );
   });
 
   it('should be defined', () => {
     expect(createSpecialtyUseCase).toBeDefined();
-    expect(specialtiesRepository).toBeDefined();
+    expect(repository).toBeDefined();
   });
 
   describe('execute', () => {
     it('should created specialty', async () => {
-      jest
-        .spyOn(specialtiesRepository, 'FindByDescription')
-        .mockResolvedValue(null);
+      jest.spyOn(repository, 'findOne').mockResolvedValue(null);
 
       const result = await createSpecialtyUseCase.execute({
         description: 'created specialty',
@@ -53,7 +53,7 @@ describe('Create specialty usecase', () => {
     it('should not create specialty with the same description', async () => {
       try {
         await createSpecialtyUseCase.execute({
-          description: 'updated specialty',
+          description: 'created specialty',
         });
       } catch (error) {
         expect(error).toBeInstanceOf(BadRequestException);

@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { getRepositoryToken } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { Address } from '../../entities/address.entity';
-import { AddressesRepository } from '../../repository/addresses.repository';
 import { CreateAddressUseCase } from './create-address.usecase';
 
 const address = new Address({
@@ -11,15 +12,17 @@ const address = new Address({
 
 describe('Create specialty usecase', () => {
   let createAddressUseCase: CreateAddressUseCase;
+  let repository: Repository<Address>;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         CreateAddressUseCase,
         {
-          provide: AddressesRepository,
+          provide: getRepositoryToken(Address),
           useValue: {
-            Create: jest.fn().mockResolvedValue(address),
+            create: jest.fn().mockResolvedValue(address),
+            save: jest.fn().mockResolvedValue(address),
           },
         },
       ],
@@ -27,10 +30,13 @@ describe('Create specialty usecase', () => {
 
     createAddressUseCase =
       module.get<CreateAddressUseCase>(CreateAddressUseCase);
+
+    repository = module.get<Repository<Address>>(getRepositoryToken(Address));
   });
 
   it('should be defined', () => {
     expect(createAddressUseCase).toBeDefined();
+    expect(repository).toBeDefined();
   });
 
   describe('execute', () => {

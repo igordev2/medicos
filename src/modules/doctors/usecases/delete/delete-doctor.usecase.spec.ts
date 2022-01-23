@@ -1,9 +1,9 @@
 import { NotFoundException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
+import { getRepositoryToken } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { Address } from '../../../addresses/entities/address.entity';
-import { AddressesRepository } from '../../../addresses/repository/addresses.repository';
 import { Doctor } from '../../entities/doctor.entity';
-import { DoctorsRepository } from '../../repository/doctors.repository';
 import { DeleteDoctorUseCase } from './delete-doctor.usecase';
 
 const doctor = new Doctor({
@@ -24,21 +24,22 @@ const address = new Address({ zipCode: '122', uf: 'sp' });
 
 describe('Delete specialty usecase', () => {
   let deleteDoctorUseCase: DeleteDoctorUseCase;
-  let doctorsRepository: DoctorsRepository;
+  let doctorsRepository: Repository<Doctor>;
+  let addressRepository: Repository<Address>;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         DeleteDoctorUseCase,
         {
-          provide: DoctorsRepository,
+          provide: getRepositoryToken(Doctor),
           useValue: {
             softDelete: jest.fn().mockResolvedValue(undefined),
-            Get: jest.fn().mockResolvedValue(doctor),
+            findOne: jest.fn().mockResolvedValue(doctor),
           },
         },
         {
-          provide: AddressesRepository,
+          provide: getRepositoryToken(Address),
           useValue: {
             softDelete: jest.fn().mockResolvedValue(address),
           },
@@ -48,12 +49,18 @@ describe('Delete specialty usecase', () => {
 
     deleteDoctorUseCase = module.get<DeleteDoctorUseCase>(DeleteDoctorUseCase);
 
-    doctorsRepository = module.get<DoctorsRepository>(DoctorsRepository);
+    doctorsRepository = module.get<Repository<Doctor>>(
+      getRepositoryToken(Doctor),
+    );
+    addressRepository = module.get<Repository<Address>>(
+      getRepositoryToken(Address),
+    );
   });
 
   it('should be defined', () => {
     expect(deleteDoctorUseCase).toBeDefined();
     expect(doctorsRepository).toBeDefined();
+    expect(addressRepository).toBeDefined();
   });
 
   describe('execute', () => {
@@ -64,7 +71,7 @@ describe('Delete specialty usecase', () => {
     });
 
     it('should not remove doctor not found', async () => {
-      jest.spyOn(doctorsRepository, 'Get').mockResolvedValue(null);
+      jest.spyOn(doctorsRepository, 'findOne').mockResolvedValue(null);
 
       try {
         await deleteDoctorUseCase.execute('1');

@@ -1,10 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { Like } from 'typeorm';
-import { DoctorsRepository } from '../../repository/doctors.repository';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Like, Repository } from 'typeorm';
+import { Doctor } from '../../entities/doctor.entity';
 
 @Injectable()
 export class SearchDoctorUseCase {
-  constructor(private readonly repository: DoctorsRepository) {}
+  constructor(
+    @InjectRepository(Doctor) private readonly repository: Repository<Doctor>,
+  ) {}
 
   async execute(query: any) {
     const doctors = await this.repository.find({
