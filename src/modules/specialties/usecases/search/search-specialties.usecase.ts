@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Like, Repository } from 'typeorm';
 import { QuerySpecialtiesDto } from '../../dtos/query-specialties.dto';
 import { Specialty } from '../../entities/specialty.entity';
 
@@ -13,7 +13,10 @@ export class SearchSpecialtiesUseCase {
 
   async execute(query: QuerySpecialtiesDto) {
     return this.specialtiesRepository.find({
-      where: [{ id: query.id }, { description: query.description }],
+      where: [
+        { id: Like(`%${query.id}%`) },
+        { description: Like(`%${query.description}%`) },
+      ],
     });
   }
 }
