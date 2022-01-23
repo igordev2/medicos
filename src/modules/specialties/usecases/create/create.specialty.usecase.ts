@@ -4,7 +4,7 @@ import { Specialty } from '../../entities/specialty.entity';
 import { SpecialtiesRepository } from '../../repository/specialties.repository';
 
 @Injectable()
-export class CreateSpecialtiesUseCase {
+export class CreateSpecialtyUseCase {
   constructor(private readonly repository: SpecialtiesRepository) {}
 
   async execute({ description }: CreateSpecialtiesDto): Promise<Specialty> {

@@ -1,21 +1,21 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CreateSpecialtiesDto } from '../../dtos/create-specialties.dto';
 import { Specialty } from '../../entities/specialty.entity';
-import { CreateSpecialtiesController } from './create.specialty.controller';
-import { CreateSpecialtiesUseCase } from './create.specialty.usecase';
+import { CreateSpecialtyController } from './create.specialty.controller';
+import { CreateSpecialtyUseCase } from './create.specialty.usecase';
 
 const specialty: Specialty = new Specialty('specialty test');
 
 describe('Create specialty controller', () => {
-  let createSpecialtyController: CreateSpecialtiesController;
-  let createSpecialtyUseCase: CreateSpecialtiesUseCase;
+  let createSpecialtyController: CreateSpecialtyController;
+  let createSpecialtyUseCase: CreateSpecialtyUseCase;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [CreateSpecialtiesController],
+      controllers: [CreateSpecialtyController],
       providers: [
         {
-          provide: CreateSpecialtiesUseCase,
+          provide: CreateSpecialtyUseCase,
           useValue: {
             execute: jest.fn().mockResolvedValue(specialty),
           },
@@ -23,11 +23,11 @@ describe('Create specialty controller', () => {
       ],
     }).compile();
 
-    createSpecialtyController = module.get<CreateSpecialtiesController>(
-      CreateSpecialtiesController,
+    createSpecialtyController = module.get<CreateSpecialtyController>(
+      CreateSpecialtyController,
     );
-    createSpecialtyUseCase = module.get<CreateSpecialtiesUseCase>(
-      CreateSpecialtiesUseCase,
+    createSpecialtyUseCase = module.get<CreateSpecialtyUseCase>(
+      CreateSpecialtyUseCase,
     );
   });
 

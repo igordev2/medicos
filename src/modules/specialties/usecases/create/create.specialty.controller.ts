@@ -3,12 +3,12 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 // import { NestExceptionSwagger } from 'src/modules/common/swagger/NestExceptionSwagger';
 import { CreateSpecialtiesDto } from '../../dtos/create-specialties.dto';
 import { Specialty } from '../../entities/specialty.entity';
-import { CreateSpecialtiesUseCase } from './create.specialty.usecase';
+import { CreateSpecialtyUseCase } from './create.specialty.usecase';
 
 @Controller('api/v1/specialties')
 @ApiTags('Specialties')
-export class CreateSpecialtiesController {
-  constructor(private readonly createSpecialties: CreateSpecialtiesUseCase) {}
+export class CreateSpecialtyController {
+  constructor(private readonly createSpecialties: CreateSpecialtyUseCase) {}
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
