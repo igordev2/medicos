@@ -41,17 +41,11 @@ export class Address {
   @ApiProperty()
   deletedAt: Date;
 
-  constructor(
-    zipCode: string,
-    streetAddress: string,
-    neighborhood: string,
-    locality: string,
-    uf: string,
-  ) {
-    this.zipCode = zipCode;
-    this.streetAddress = streetAddress;
-    this.neighborhood = neighborhood;
-    this.locality = locality;
-    this.uf = uf;
+  constructor(address?: Partial<Address>) {
+    this.zipCode = address?.zipCode;
+    this.streetAddress = address?.streetAddress;
+    this.neighborhood = address?.neighborhood;
+    this.locality = address?.locality;
+    this.uf = address?.uf;
   }
 }

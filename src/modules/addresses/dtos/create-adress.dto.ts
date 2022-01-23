@@ -3,21 +3,21 @@ import { IsNotEmpty, IsString } from 'class-validator';
 export class CreateAddressDto {
   @IsNotEmpty()
   @IsString()
-  zipCode: string;
+  zipCode?: string;
 
   @IsNotEmpty()
   @IsString()
-  streetAddress: string;
+  streetAddress?: string;
 
   @IsNotEmpty()
   @IsString()
-  neighborhood: string;
+  neighborhood?: string;
 
   @IsNotEmpty()
   @IsString()
-  locality: string;
+  locality?: string;
 
   @IsNotEmpty()
   @IsString()
-  uf: string;
+  uf?: string;
 }

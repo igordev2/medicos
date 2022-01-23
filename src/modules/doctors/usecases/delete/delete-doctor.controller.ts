@@ -7,7 +7,7 @@ import {
   ParseUUIDPipe,
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { NestExceptionSwagger } from 'src/modules/common/swagger/NestExceptionSwagger';
+import { NestExceptionSwagger } from '../../../common/swagger/NestExceptionSwagger';
 import { DeleteDoctorUseCase } from './delete-doctor.usecase';
 
 @Controller('api/v1/doctors')

@@ -15,7 +15,7 @@ export class CreateAddressUseCase {
     uf,
   }: CreateAddressDto) {
     return await this.repository.Create(
-      new Address(zipCode, streetAddress, neighborhood, locality, uf),
+      new Address({ zipCode, streetAddress, neighborhood, locality, uf }),
     );
   }
 }

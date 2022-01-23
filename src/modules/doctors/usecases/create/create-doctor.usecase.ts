@@ -1,8 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { CreateAddressUseCase } from 'src/modules/addresses/usecases/create/create-address.usecase';
+import { CreateAddressUseCase } from '../../../addresses/usecases/create/create-address.usecase';
 import { Specialty } from 'src/modules/specialties/entities/specialty.entity';
 
-import { SpecialtiesRepository } from 'src/modules/specialties/repository/specialties.repository';
+import { SpecialtiesRepository } from '../../../specialties/repository/specialties.repository';
 import { CreateDoctorDto } from '../../dtos/create-doctor.dto';
 import { Doctor } from '../../entities/doctor.entity';
 import { DoctorsRepository } from '../../repository/doctors.repository';

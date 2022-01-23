@@ -13,31 +13,31 @@ export class CreateDoctorDto {
   @IsString()
   @Length(10, 120)
   @ApiProperty()
-  name: string;
+  name?: string;
 
   @IsNotEmpty()
   @IsInt()
   @ApiProperty()
-  crm: number;
+  crm?: number;
 
   @IsNotEmpty()
   @IsInt()
   @ApiProperty()
-  landline: number;
+  landline?: number;
 
   @IsNotEmpty()
   @IsInt()
   @ApiProperty()
-  cellPhone: number;
+  cellPhone?: number;
 
   @IsNotEmpty()
   @IsInt()
   @ApiProperty()
-  zipCode: number;
+  zipCode?: number;
 
   @IsNotEmpty()
   @IsArray()
   @ArrayMinSize(2)
   @ApiProperty()
-  specialties: string[];
+  specialties?: string[];
 }

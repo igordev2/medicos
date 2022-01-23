@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { AddressesRepository } from 'src/modules/addresses/repository/addresses.repository';
+import { AddressesRepository } from '../../../addresses/repository/addresses.repository';
 import { DoctorsRepository } from '../../repository/doctors.repository';
 
 @Injectable()
