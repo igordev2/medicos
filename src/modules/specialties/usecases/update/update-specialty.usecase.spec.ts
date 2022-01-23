@@ -6,7 +6,7 @@ import { UpdateSpecialtyUseCase } from './update-specialty.usecase';
 
 const specialty = new Specialty('updated specialty');
 
-describe('Update specialty', () => {
+describe('Update specialty usecase', () => {
   let updateSpecialtyUseCase: UpdateSpecialtyUseCase;
   let specialtiesRepository: SpecialtiesRepository;
 

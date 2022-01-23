@@ -9,7 +9,7 @@ const specialties: Specialty[] = [
   new Specialty('specialty3'),
 ];
 
-describe('List specialties', () => {
+describe('List specialties usecase', () => {
   let listSpecialtiesUseCase: ListSpecialtiesUseCase;
 
   beforeEach(async () => {

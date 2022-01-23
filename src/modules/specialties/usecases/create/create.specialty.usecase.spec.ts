@@ -6,7 +6,7 @@ import { CreateSpecialtyUseCase } from './create.specialty.usecase';
 
 const specialty = new Specialty('created specialty');
 
-describe('Created specialty', () => {
+describe('Create specialty usecase', () => {
   let createSpecialtyUseCase: CreateSpecialtyUseCase;
   let specialtiesRepository: SpecialtiesRepository;
 

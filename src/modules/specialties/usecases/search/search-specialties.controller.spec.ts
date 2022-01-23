@@ -13,7 +13,7 @@ const specialtiesSearch: Specialty[] = [
   },
 ];
 
-describe('List specialties controller', () => {
+describe('Search specialties controller', () => {
   let searchSpecialtiesController: SearchSpecialtiesController;
   let searchSpecialtiesUseCase: SearchSpecialtiesUseCase;
 

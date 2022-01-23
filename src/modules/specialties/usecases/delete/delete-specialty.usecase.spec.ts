@@ -6,7 +6,7 @@ import { DeleteSpecialtyUseCase } from './delete-specialty.usecase';
 
 const specialty = new Specialty('specialty');
 
-describe('Delete specialty', () => {
+describe('Delete specialty usecase', () => {
   let deleteSpecialtyUseCase: DeleteSpecialtyUseCase;
   let specialtiesRepository: SpecialtiesRepository;
 

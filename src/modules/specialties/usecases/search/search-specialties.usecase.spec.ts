@@ -9,7 +9,7 @@ const specialties: Specialty[] = [
   new Specialty('specialty3'),
 ];
 
-describe('List specialties', () => {
+describe('Search specialties usecase', () => {
   let searchSpecialtiesUseCase: SearchSpecialtiesUseCase;
 
   beforeEach(async () => {
@@ -35,7 +35,7 @@ describe('List specialties', () => {
   });
 
   describe('execute', () => {
-    it('should return a specialties list successfuly', async () => {
+    it('should return a searched specialty', async () => {
       const result = await searchSpecialtiesUseCase.execute({
         description: 'query',
       });
