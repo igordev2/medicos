@@ -1,6 +1,6 @@
 import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-// import { NestExceptionSwagger } from 'src/modules/common/swagger/NestExceptionSwagger';
+import { NestExceptionSwagger } from '../../../common/swagger/NestExceptionSwagger';
 import { CreateSpecialtiesDto } from '../../dtos/create-specialties.dto';
 import { Specialty } from '../../entities/specialty.entity';
 import { CreateSpecialtyUseCase } from './create.specialty.usecase';
@@ -21,7 +21,7 @@ export class CreateSpecialtyController {
   @ApiResponse({
     status: 400,
     description: 'specialty already exists!',
-    // type: NestExceptionSwagger,
+    type: NestExceptionSwagger,
   })
   async handle(@Body() createSpecialtiesDto: CreateSpecialtiesDto) {
     return await this.createSpecialties.execute(createSpecialtiesDto);

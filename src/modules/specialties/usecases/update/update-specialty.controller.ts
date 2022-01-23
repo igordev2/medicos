@@ -8,7 +8,7 @@ import {
   Put,
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-// import { NestExceptionSwagger } from 'src/modules/common/swagger/NestExceptionSwagger';
+import { NestExceptionSwagger } from '../../../common/swagger/NestExceptionSwagger';
 import { UpdateSpecialtiesDto } from '../../dtos/update-specialties.dto';
 import { Specialty } from '../../entities/specialty.entity';
 import { UpdateSpecialtyUseCase } from './update-specialty.usecase';
@@ -29,12 +29,12 @@ export class UpdateSpecialtyController {
   @ApiResponse({
     status: 404,
     description: 'specialty does not exists!',
-    // type: NestExceptionSwagger,
+    type: NestExceptionSwagger,
   })
   @ApiResponse({
     status: 400,
     description: 'specialty already exists!',
-    // type: NestExceptionSwagger,
+    type: NestExceptionSwagger,
   })
   async handle(
     @Param('id', new ParseUUIDPipe()) id: string,

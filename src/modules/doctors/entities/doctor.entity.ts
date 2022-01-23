@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Address } from 'src/modules/addresses/entities/address.entity';
-import { Specialty } from 'src/modules/specialties/entities/specialty.entity';
+import { Address } from '../../addresses/entities/address.entity';
+import { Specialty } from '../../specialties/entities/specialty.entity';
 import {
   Column,
   CreateDateColumn,
@@ -63,19 +63,12 @@ export class Doctor {
   @ApiProperty()
   deletedAt: Date;
 
-  constructor(
-    name: string,
-    crm: number,
-    landline: number,
-    cellPhone: number,
-    address: Address,
-    specialties: Specialty[],
-  ) {
-    this.name = name;
-    this.crm = crm;
-    this.landline = landline;
-    this.cellPhone = cellPhone;
-    this.address = address;
-    this.specialties = specialties;
+  constructor(doctor?: Partial<Doctor>) {
+    this.name = doctor?.name;
+    this.crm = doctor?.crm;
+    this.landline = doctor?.landline;
+    this.cellPhone = doctor?.cellPhone;
+    this.address = doctor?.address;
+    this.specialties = doctor?.specialties;
   }
 }
