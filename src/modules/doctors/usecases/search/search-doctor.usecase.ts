@@ -17,6 +17,15 @@ export class SearchDoctorUseCase {
         { crm: Like(`%${query.crm}%`) },
         { landline: Like(`%${query.landLine}%`) },
         { cellPhone: Like(`%${query.cellPhone}%`) },
+        {
+          address: {
+            zipCode: Like(`%${query.zipCode}%`),
+            locality: Like(`%${query.locality}%`),
+            neighborhood: Like(`%${query.neighborhood}%`),
+            streetAddress: Like(`%${query.streetAddress}%`),
+            uf: Like(`%${query.uf}%`),
+          },
+        },
       ],
     });
 
