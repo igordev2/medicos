@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Specialty } from './entities/specialty.entity';
 import { CreateSpecialtyController } from './usecases/create/create.specialty.controller';
@@ -12,6 +12,7 @@ import { SearchSpecialtiesUseCase } from './usecases/search/search-specialties.u
 import { UpdateSpecialtyController } from './usecases/update/update-specialty.controller';
 import { UpdateSpecialtyUseCase } from './usecases/update/update-specialty.usecase';
 
+@Global()
 @Module({
   imports: [TypeOrmModule.forFeature([Specialty])],
   controllers: [
