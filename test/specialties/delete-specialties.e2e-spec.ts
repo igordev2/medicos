@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
+import { randomUUID } from 'crypto';
 import { AppModule } from '../../src/app.module';
 
 describe('Specialties (e2e)', () => {
@@ -15,12 +16,17 @@ describe('Specialties (e2e)', () => {
     await app.init();
   });
 
-  it('(GET) -> /api/v1/specialties ', async () => {
-    const response = await request(app.getHttpServer()).get(
-      '/api/v1/specialties',
+  it('(DELETE) -> /api/v1/specialties ', async () => {
+    const specialty = await request(app.getHttpServer())
+      .post('/api/v1/specialties')
+      .send({
+        description: `${randomUUID()}`,
+      });
+
+    const response = await request(app.getHttpServer()).delete(
+      `/api/v1/specialties/${specialty.body.id}`,
     );
 
-    expect(response.statusCode).toBe(200);
-    expect(response.body.length).toBeGreaterThanOrEqual(8);
+    expect(response.statusCode).toBe(204);
   });
 });
