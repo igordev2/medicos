@@ -4,7 +4,7 @@
 
 # Running the app
 
-## modify file environments
+## Modify file environments
 
 1. Rename file .env.example to .env
 2. Add database connection settings to files.
