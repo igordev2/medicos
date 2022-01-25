@@ -51,3 +51,9 @@ $ npm run test:e2e
 ````bash
 $ npm run test:cov
 ````
+
+## Swagger
+[Swagger](http://localhost/)
+
+## Insomnia
+[Insomnia](https://github.com/igordev2/medicos/blob/master/insomnia.json)
