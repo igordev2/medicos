@@ -16,15 +16,15 @@ describe('Specialties (e2e)', () => {
     await app.init();
   });
 
-  it('(GET) -> /api/v1/specialties ', async () => {
-    const specialtyDescription = `query ${randomUUID()}`;
+  it('(GET) -> /api/v1/specialties/search', async () => {
+    const specialtyDescription = `${randomUUID()}`;
 
     await request(app.getHttpServer()).post('/api/v1/specialties').send({
       description: specialtyDescription,
     });
 
     const response = await request(app.getHttpServer())
-      .get('/api/v1/specialties')
+      .get('/api/v1/specialties/search')
       .query({ description: specialtyDescription });
 
     expect(response.statusCode).toBe(200);
