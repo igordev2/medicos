@@ -2,9 +2,9 @@
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
 </p>
 
-## Running the app
+# Running the app
 
-# modify file environments
+## Modify environment variables
 
 1. Rename file .env.example to .env
 2. Add database connection settings to files.
@@ -26,6 +26,7 @@ MYSQL_USERNAME=root
 MYSQL_PASSWORD=root
 MYSQL_DATABASE=medicos
 ```
+## Execute app
 
 ```bash
 # development
@@ -48,6 +49,5 @@ $ npm run test:e2e
 # test coverage
 
 ````bash
-```bash
 $ npm run test:cov
 ````
