@@ -52,5 +52,8 @@ $ npm run test:e2e
 $ npm run test:cov
 ````
 
-# Swagger
+## Swagger
 [Swagger](http://localhost/)
+
+## Insomnia
+[Insomnia](http://localhost/)
