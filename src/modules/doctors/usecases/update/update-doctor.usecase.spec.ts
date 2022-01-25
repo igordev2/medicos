@@ -6,6 +6,7 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Address } from '../../../addresses/entities/address.entity';
 import { UpdateDoctorUseCase } from './update-doctor.usecase';
+import { NotFoundException } from '@nestjs/common';
 
 const doctor: Doctor = new Doctor({
   name: 'Igor update',
@@ -94,6 +95,48 @@ describe('Update Doctor usecase', () => {
         specialties: ['1', '2'],
       });
       expect(result).toEqual(doctor);
+    });
+
+    describe('execute', () => {
+      it('should not update doctor', async () => {
+        jest.spyOn(doctorsRepository, 'findOne').mockResolvedValue(undefined);
+        const id = '123';
+
+        try {
+          await updateDoctorUseCase.execute(id, {
+            name: 'Igor update',
+            crm: 123,
+            cellPhone: 1234,
+            landline: 12345,
+            zipCode: 13568812,
+            specialties: ['1', '2'],
+          });
+        } catch (error) {
+          expect(error).toBeInstanceOf(NotFoundException);
+        }
+      });
+    });
+
+    describe('execute', () => {
+      it('should not update doctor', async () => {
+        jest
+          .spyOn(specialtiesRepository, 'findOne')
+          .mockResolvedValue(undefined);
+        const id = '123';
+
+        try {
+          await updateDoctorUseCase.execute(id, {
+            name: 'Igor update',
+            crm: 123,
+            cellPhone: 1234,
+            landline: 12345,
+            zipCode: 13568812,
+            specialties: ['1', '2'],
+          });
+        } catch (error) {
+          expect(error).toBeInstanceOf(NotFoundException);
+        }
+      });
     });
   });
 });
