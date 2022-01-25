@@ -4,19 +4,27 @@
 
 ## Running the app
 
-````bash
+```bash
 # development
 $ docker-compose up
+```
 
 ## Test
 
 ```bash
-# unit tests
+## unit tests
 $ npm run test
+```
 
 # e2e tests
+
+```bash
 $ npm run test:e2e
+```
 
 # test coverage
+
+````bash
+```bash
 $ npm run test:cov
 ````
