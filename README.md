@@ -56,4 +56,4 @@ $ npm run test:cov
 [Swagger](http://localhost/)
 
 ## Insomnia
-[Insomnia](http://localhost/)
+[Insomnia](https://github.com/igordev2/medicos/blob/master/insomnia.json)
