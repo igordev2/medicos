@@ -1,0 +1,430 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2022-01-25T13:24:34.415Z",
+  "__export_source": "insomnia.desktop.app:v2021.7.2",
+  "resources": [
+    {
+      "_id": "req_3977e7384d4144468eabf179828d432a",
+      "parentId": "fld_a40aad6f77534888947cd29dcdc9c48d",
+      "modified": 1642861128362,
+      "created": 1642819632825,
+      "url": "{{ _.url }}/doctors",
+      "name": "List",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1642819632825,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_a40aad6f77534888947cd29dcdc9c48d",
+      "parentId": "wrk_5e14ea4d565a4ad598c59c980936a492",
+      "modified": 1642819608612,
+      "created": 1642819608612,
+      "name": "Doctor",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1642819608612,
+      "_type": "request_group"
+    },
+    {
+      "_id": "wrk_5e14ea4d565a4ad598c59c980936a492",
+      "parentId": null,
+      "modified": 1642724255078,
+      "created": 1642724255078,
+      "name": "Medicos",
+      "description": "",
+      "scope": "collection",
+      "_type": "workspace"
+    },
+    {
+      "_id": "req_a22945cc4e3f4eccba9db7d8b18fe1da",
+      "parentId": "fld_a40aad6f77534888947cd29dcdc9c48d",
+      "modified": 1643074637898,
+      "created": 1642862653867,
+      "url": "{{ _.url }}/doctors/search",
+      "name": "Search",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "id": "pair_7ab8511dd3244b76b579eb7829ef6526",
+          "name": "name",
+          "value": "",
+          "description": "",
+          "disabled": false
+        },
+        {
+          "id": "pair_a759035a8a9549a0abd94ca6567927dd",
+          "name": "crm",
+          "value": "",
+          "description": "",
+          "disabled": false
+        },
+        {
+          "id": "pair_590f2cec67ee4194be16456ed2193b6a",
+          "name": "landline",
+          "value": "",
+          "description": "",
+          "disabled": false
+        },
+        {
+          "id": "pair_1778acee393e433aabae966d0315f848",
+          "name": "cellPhone",
+          "value": "",
+          "description": "",
+          "disabled": false
+        },
+        {
+          "id": "pair_f8839629db05417094ad80cb71761285",
+          "name": "zipCode",
+          "value": "",
+          "description": "",
+          "disabled": false
+        },
+        {
+          "id": "pair_6935188ea56b44cb81680e115788f6be",
+          "name": "neighborhood",
+          "value": "",
+          "description": "",
+          "disabled": false
+        },
+        {
+          "id": "pair_eae9c6bd02324f0792cf7016e2838ee5",
+          "name": "streetAddress",
+          "value": "",
+          "description": "",
+          "disabled": false
+        }
+      ],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1642807951157.875,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_514ec7b3e0a347a8ba88aff4085ae1dd",
+      "parentId": "fld_a40aad6f77534888947cd29dcdc9c48d",
+      "modified": 1642965936245,
+      "created": 1642861103554,
+      "url": "{{ _.url }}/doctors/c2d7045b-b4e2-48e1-a381-769405a564ee",
+      "name": "Delete",
+      "description": "",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1642796269490.75,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_db109993a0dc407092f2eb5cbd0ee3cb",
+      "parentId": "fld_a40aad6f77534888947cd29dcdc9c48d",
+      "modified": 1643116247380,
+      "created": 1642819889923,
+      "url": "{{ _.url }}/doctors",
+      "name": "Create",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"name\": \"Igor de Souza Bezerra\",\n\t\"crm\": 123456,\n\t\"landline\": 1633068772,\n\t\"cellPhone\": 16997654486,\n\t\"zipCode\": 13568812,\n\t\"specialties\": [\"3ba16614-f85b-4811-bd32-e6ddb2aaff3b\", \"3d8616f4-6173-4881-9b80-4ab695386e27\"]\n}\t"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_32d8a6e6feff4c5fa3352d42291ee03f"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1642772906156.5,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_ca1cf808f0404e03b94eced3ebaaade1",
+      "parentId": "fld_a40aad6f77534888947cd29dcdc9c48d",
+      "modified": 1643116278720,
+      "created": 1643116149717,
+      "url": "{{ _.url }}/doctors/5b1fa876-3bfb-4dc3-b1de-429172be39fa",
+      "name": "Update",
+      "description": "",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"name\": \"Igor de Souza Bezerra Atualizado\",\n\t\"crm\": 123456,\n\t\"landline\": 1633068772,\n\t\"cellPhone\": 16997654486,\n\t\"zipCode\": 13568812,\n\t\"specialties\": [\"3ba16614-f85b-4811-bd32-e6ddb2aaff3b\", \"3d8616f4-6173-4881-9b80-4ab695386e27\", \"536e709f-0b92-4b32-a21a-a10f45662e8c\"]\n}\t"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_32d8a6e6feff4c5fa3352d42291ee03f"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1642749542822.25,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_956ba3d1e23646be9791a7339d71e53a",
+      "parentId": "fld_5d85fe910d1c48a5b7c33fc45f9dd994",
+      "modified": 1643116134641,
+      "created": 1642726179488,
+      "url": "{{ _.url }}/specialties",
+      "name": "Create",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"description\": \"Henry Carlos Bezerra\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_25fc370ccadf4acc8235459a185dda3c"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1642726179488,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_5d85fe910d1c48a5b7c33fc45f9dd994",
+      "parentId": "wrk_5e14ea4d565a4ad598c59c980936a492",
+      "modified": 1642724259999,
+      "created": 1642724259999,
+      "name": "Specialties",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1642724259999,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_cd647e93567548d6b8532acb3e541af4",
+      "parentId": "fld_5d85fe910d1c48a5b7c33fc45f9dd994",
+      "modified": 1643057150627,
+      "created": 1642791097693,
+      "url": "{{ _.url }}/specialties/f28c5886-79fc-4ef0-ba6e-bed3a7f1b7c0",
+      "name": "Update",
+      "description": "",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"description\": \"Cirurgia de cabeça 9\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_25fc370ccadf4acc8235459a185dda3c"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1642725221213.5,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_bdce661249a94ef5bd5141417b36e95c",
+      "parentId": "fld_5d85fe910d1c48a5b7c33fc45f9dd994",
+      "modified": 1642965843169,
+      "created": 1642793896728,
+      "url": "{{ _.url }}/specialties/f28c5886-79fc-4ef0-ba6e-bed3a7f1b7c0",
+      "name": "Delete",
+      "description": "",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1642724742076.25,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_ee8ff8f8b00a4cdc9b569ab4883b4f67",
+      "parentId": "fld_5d85fe910d1c48a5b7c33fc45f9dd994",
+      "modified": 1642724328902,
+      "created": 1642724262939,
+      "url": "{{ _.url }}/specialties",
+      "name": "List",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1642724262939,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_e52f9154e4cf483097773f6b7319cd6b",
+      "parentId": "fld_5d85fe910d1c48a5b7c33fc45f9dd994",
+      "modified": 1643071606604,
+      "created": 1642794725688,
+      "url": "{{ _.url }}/specialties/search",
+      "name": "Search",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "id": "pair_748e23c7a5c44f9595898113423f4378",
+          "name": "id",
+          "value": "7c36ef3e-55df-423a-87a2-9f9bc0880b53",
+          "description": "",
+          "disabled": true
+        },
+        {
+          "id": "pair_887075afa4fa448d960fea3cf7a75291",
+          "name": "description",
+          "value": "Cirurgia de tórax",
+          "description": "",
+          "disabled": false
+        }
+      ],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1642290243594.5,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "env_1185a82070994d74c20a12aefe2410c957cea1a7",
+      "parentId": "wrk_5e14ea4d565a4ad598c59c980936a492",
+      "modified": 1642724291217,
+      "created": 1642724255093,
+      "name": "Base Environment",
+      "data": {
+        "url": "http://localhost/api/v1"
+      },
+      "dataPropertyOrder": {
+        "&": [
+          "url"
+        ]
+      },
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1642724255094,
+      "_type": "environment"
+    },
+    {
+      "_id": "jar_1185a82070994d74c20a12aefe2410c957cea1a7",
+      "parentId": "wrk_5e14ea4d565a4ad598c59c980936a492",
+      "modified": 1642724255098,
+      "created": 1642724255098,
+      "name": "Default Jar",
+      "cookies": [],
+      "_type": "cookie_jar"
+    },
+    {
+      "_id": "spc_9241d2c3cba64ddd83ac9eb5bbee6d66",
+      "parentId": "wrk_5e14ea4d565a4ad598c59c980936a492",
+      "modified": 1642724255080,
+      "created": 1642724255080,
+      "fileName": "Medicos",
+      "contents": "",
+      "contentType": "yaml",
+      "_type": "api_spec"
+    },
+    {
+      "_id": "env_04bd89b65bf94cbbbf7c867f1d213074",
+      "parentId": "env_1185a82070994d74c20a12aefe2410c957cea1a7",
+      "modified": 1642724319779,
+      "created": 1642724293251,
+      "name": "development",
+      "data": {
+        "url": "localhost/api/v1"
+      },
+      "dataPropertyOrder": {
+        "&": [
+          "url"
+        ]
+      },
+      "color": "#7d69cb",
+      "isPrivate": false,
+      "metaSortKey": 1642724293251,
+      "_type": "environment"
+    }
+  ]
+}
