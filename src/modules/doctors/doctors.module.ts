@@ -13,6 +13,8 @@ import { ListDoctorsController } from './usecases/list/list-doctors.controller';
 import { ListDoctorsUseCase } from './usecases/list/list-doctors.usecase';
 import { SearchDoctorController } from './usecases/search/search-doctor.controller';
 import { SearchDoctorUseCase } from './usecases/search/search-doctor.usecase';
+import { UpdateDoctorController } from './usecases/update/update-doctor.controller';
+import { UpdateDoctorUseCase } from './usecases/update/update-doctor.usecase';
 
 @Module({
   imports: [
@@ -22,12 +24,14 @@ import { SearchDoctorUseCase } from './usecases/search/search-doctor.usecase';
   ],
   controllers: [
     CreateDoctorController,
+    UpdateDoctorController,
     ListDoctorsController,
     DeleteDoctorController,
     SearchDoctorController,
   ],
   providers: [
     CreateDoctorUseCase,
+    UpdateDoctorUseCase,
     ListDoctorsUseCase,
     DeleteDoctorUseCase,
     SearchDoctorUseCase,
