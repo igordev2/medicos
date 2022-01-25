@@ -4,6 +4,29 @@
 
 ## Running the app
 
+# modify file environments
+
+1. Rename file .env.example to .env
+2. Add database connection settings to files.
+
+```files
+.env
+.env.local
+.env.test
+```
+
+Example:
+
+```env
+# TypeORM Config
+
+MYSQL_HOST=mysql
+MYSQL_PORT=3306
+MYSQL_USERNAME=root
+MYSQL_PASSWORD=root
+MYSQL_DATABASE=medicos
+```
+
 ```bash
 # development
 $ docker-compose up
