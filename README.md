@@ -49,6 +49,5 @@ $ npm run test:e2e
 # test coverage
 
 ````bash
-```bash
 $ npm run test:cov
 ````
