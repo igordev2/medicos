@@ -1,18 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {
-  Column,
-  CreateDateColumn,
-  DeleteDateColumn,
-  Entity,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { BaseEntity } from '../../common/entities/BaseEntity';
+import { Column, Entity } from 'typeorm';
 
 @Entity('addresses')
-export class Address {
-  @PrimaryGeneratedColumn('uuid')
-  @ApiProperty()
-  id: string;
-
+export class Address extends BaseEntity {
   @Column({ name: 'zip_code' })
   @ApiProperty()
   zipCode: string;
@@ -33,15 +24,8 @@ export class Address {
   @ApiProperty()
   uf: string;
 
-  @CreateDateColumn({ name: 'created_at' })
-  @ApiProperty()
-  createdAt: Date;
-
-  @DeleteDateColumn({ name: 'deleted_at' })
-  @ApiProperty()
-  deletedAt: Date;
-
   constructor(address?: Partial<Address>) {
+    super();
     this.zipCode = address?.zipCode;
     this.streetAddress = address?.streetAddress;
     this.neighborhood = address?.neighborhood;

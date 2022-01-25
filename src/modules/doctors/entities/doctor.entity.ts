@@ -3,22 +3,16 @@ import { Address } from '../../addresses/entities/address.entity';
 import { Specialty } from '../../specialties/entities/specialty.entity';
 import {
   Column,
-  CreateDateColumn,
-  DeleteDateColumn,
   Entity,
   JoinColumn,
   JoinTable,
   ManyToMany,
   OneToOne,
-  PrimaryGeneratedColumn,
 } from 'typeorm';
+import { BaseEntity } from '../../common/entities/BaseEntity';
 
 @Entity({ name: 'doctors' })
-export class Doctor {
-  @PrimaryGeneratedColumn('uuid')
-  @ApiProperty()
-  id: string;
-
+export class Doctor extends BaseEntity {
   @Column({ length: 120, type: 'varchar' })
   @ApiProperty()
   name: string;
@@ -55,15 +49,8 @@ export class Doctor {
   @ApiProperty()
   specialties: Specialty[];
 
-  @CreateDateColumn({ name: 'created_at' })
-  @ApiProperty()
-  createdAt: Date;
-
-  @DeleteDateColumn({ name: 'deleted_at' })
-  @ApiProperty()
-  deletedAt: Date;
-
   constructor(doctor?: Partial<Doctor>) {
+    super();
     this.name = doctor?.name;
     this.crm = doctor?.crm;
     this.landline = doctor?.landline;

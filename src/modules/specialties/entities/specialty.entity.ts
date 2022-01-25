@@ -1,31 +1,15 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {
-  Column,
-  CreateDateColumn,
-  DeleteDateColumn,
-  Entity,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { BaseEntity } from '../../common/entities/BaseEntity';
+import { Column, Entity } from 'typeorm';
 
 @Entity('specialties')
-export class Specialty {
-  @PrimaryGeneratedColumn('uuid')
-  @ApiProperty()
-  id: string;
-
+export class Specialty extends BaseEntity {
   @Column({ unique: true })
   @ApiProperty()
   description: string;
 
-  @CreateDateColumn({ name: 'created_at' })
-  @ApiProperty()
-  createdAt: Date;
-
-  @DeleteDateColumn({ name: 'deleted_at' })
-  @ApiProperty()
-  deletedAt: Date;
-
   constructor(description: string) {
+    super();
     this.description = description;
   }
 }
